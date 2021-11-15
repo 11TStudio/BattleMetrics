@@ -16,6 +16,9 @@ Before installing, [download and install Node.js](https://nodejs.org/en/download
 ``` js
 const BM = require('battlemetricsapi')
 ```
+```
+npm package link coming soon.
+```
 
 
 ## Initialization
