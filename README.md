@@ -7,8 +7,6 @@ Now with error handling and commented.
 
 Soon this will include all possible API requests.
 
-# Getting Started!
-
 ## Installation
 
 This is a  [Node.js](https://nodejs.org/en/)  module.
