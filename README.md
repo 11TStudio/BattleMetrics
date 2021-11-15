@@ -3,7 +3,7 @@
 BattleMetics is a advanced rewrite of BattleMeticsAPI.
 An easy and open source NPM Package that allows you to do a variety of functions within BattleMetrics but much easier!
 
-Now with error handling and commented.
+Now with checkers, error handling and documented (WIP).
 
 Soon this will include all possible API requests.
 
