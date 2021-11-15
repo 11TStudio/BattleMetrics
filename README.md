@@ -1,11 +1,11 @@
 # BattleMetrics
 
-BattleMetics is a advanced rewrite of BattleMeticsAPI.
+BattleMetics is an advanced rewrite of BattleMeticsAPI (Orginal author: [@Curse345](github.com/Curse345)). <br>
 An easy and open source NPM Package that allows you to do a variety of functions within BattleMetrics but much easier!
 
-Now with checkers, error handling and documented (WIP).
+**Now with checkers, error handling and documented (WIP).**
 
-Soon this will include all possible API requests.
+*TODO: Soon this repo will include all possible API requests.*
 
 ## Installation
 
