@@ -429,6 +429,28 @@ tBM.getBans().then(res => {
     }
 });
 
+/**
+ * Get leaderbaord of the options.serverID
+ * 
+ * Example Response:
+ * {
+ *  "data": [
+ *      {
+ *      "type": "leaderboardPlayer",
+ *      "id": "42",
+ *      "attributes": {
+ *          "name": "Quark",
+ *          "value": 42,
+ *          "rank": 42
+ *       }
+ *     }
+ * ],
+ *  "included": {
+ *      "next": "https://api.battlemetrics.com/servers/1/leaderboards/time?page[size]=10&page[offset]=10",
+        "prev": "https://api.battlemetrics.com/servers/1/leaderboards/time?page[size]=10&page[offset]=0"
+ *  }
+ * }
+ */
 const startDateLeaderBoard = new Date();
 startDateLeaderBoard.setDate(startDateLeaderBoard.getDate() - 90);
 const endDateLeaderBoard = new Date();
