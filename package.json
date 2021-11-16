@@ -1,6 +1,6 @@
 {
   "name": "@leventhan/battlemetrics",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A modern NodeJS library for the BM API",
   "main": "index.js",
   "scripts": {
