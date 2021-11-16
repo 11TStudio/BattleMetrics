@@ -159,6 +159,126 @@ tBM.getServerInfoByName("GERMAN SQUAD #1").then(res => {
 });
 
 /**
+ * Get game information by game name
+ * 
+ * Example Response:
+ * {
+ *   type: 'game',
+ *   id: 'squad',
+ *   attributes: {
+ *       name: 'Squad',
+ *       metadata: { appid: 393380, gamedir: 'squad' },
+ *       players: 2768,
+ *       servers: 518,
+ *       serversByCountry: {
+ *          AR: 1,
+ *          AT: 1,
+ *          AU: 20,
+ *          BE: 1,
+ *          BR: 10,
+ *          CA: 22,
+ *          CH: 1,
+ *          CL: 1,
+ *          CN: 69,
+ *          DE: 113,
+ *          FI: 7,
+ *          FR: 23,
+ *          GB: 26,
+ *          JP: 5,
+ *          KR: 1,
+ *          MX: 1,
+ *          MY: 1,
+ *          NL: 11,
+ *          NO: 1,
+ *          PH: 1,
+ *          PL: 5,
+ *          RU: 26,
+ *          SE: 4,
+ *          SG: 6,
+ *          TH: 1,
+ *          TR: 5,
+ *          UA: 2,
+ *          US: 153
+ *       },
+ *       playersByCountry: {
+ *          AU: 192,
+ *          BR: 11,
+ *          CN: 819,
+ *          DE: 582,
+ *          FR: 44,
+ *          GB: 113,
+ *          NL: 111,
+ *          RU: 381,
+ *          TR: 104,
+ *          UA: 1,
+ *          US: 312
+ *       },
+ *       minPlayers24H: 1884,
+ *       maxPlayers24H: 4568,
+ *       minPlayers7D: 1715,
+ *       maxPlayers7D: 5822,
+ *       minPlayers30D: 1715,
+ *       maxPlayers30D: 6196
+ *   }
+ * }
+ */
+tBM.getGameInfo("squad").then(res => {
+    const message = "Get game info by game name";
+    console.log("=".repeat(message.length));
+    console.log(message);
+    console.log("=".repeat(message.length));
+    console.log(res)
+}).catch(err => {
+    console.log(err)
+});
+
+/**
+ * Get all servers by server name and by game name
+ * 
+ * Example Response:
+ * [
+ *   {
+ *       id: '4537923',
+ *       name: 'GERMAN SQUAD SERVER',
+ *       address: null,
+ *       ip: '185.234.72.195',
+ *       port: 7787,
+ *       players: 0,
+ *       maxPlayers: 80,
+ *       rank: 698,
+ *       location: [ 8.68417, 50.11552 ],
+ *       status: 'dead',
+ *       details: {
+ *       numOpenPrivConn: 4,
+ *       version: 'a-16.0.12.21682',
+ *       secure: 0,
+ *       gameMode: 'Training',
+ *       licensedServer: false,
+ *       numPubConn: 76,
+ *       map: "Jensen's Range v1",
+ *       numPrivConn: 4,
+ *       serverSteamId: '90129684440801287'
+ *       },
+ *       private: false,
+ *       createdAt: '2019-10-09T21:50:39.515Z',
+ *       updatedAt: '2021-11-16T06:36:26.355Z',
+ *       portQuery: 27165,
+ *       country: 'DE'
+ *   }, 
+ *  {...}
+ * ]
+ */
+tBM.getServerInfoByNameAndGame("GERMAN SQUAD", "squad").then(res => {
+    const message = "Get serverID by server name and game name.";
+    console.log("=".repeat(message.length));
+    console.log(message);
+    console.log("=".repeat(message.length));
+    console.log(res)
+}).catch(err => {
+    console.log(err)
+});
+
+/**
  * Get playerID's total play time on serverID between startTime and endTime
  * 
  * Example Response:
@@ -322,7 +442,7 @@ tBM.getPlayerInfo("489993844").then(res => {
  *  ]
  * }
  */
-tBM.getBanInfo("6780787").then(res => {
+tBM.getBanInfoByID("6780787").then(res => {
     const message = "Get ban info";
     console.log("=".repeat(message.length));
     console.log(message);
@@ -447,7 +567,7 @@ tBM.getBans().then(res => {
  * ],
  *  "included": {
  *      "next": "https://api.battlemetrics.com/servers/1/leaderboards/time?page[size]=10&page[offset]=10",
-        "prev": "https://api.battlemetrics.com/servers/1/leaderboards/time?page[size]=10&page[offset]=0"
+ *       "prev": "https://api.battlemetrics.com/servers/1/leaderboards/time?page[size]=10&page[offset]=0"
  *  }
  * }
  */
