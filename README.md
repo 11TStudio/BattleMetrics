@@ -29,7 +29,7 @@ Then you can use it as below;
 ``` js
 // The options is NEEDED for the authentication!
 const options = {
-    token: process.env.TOKEN || "Your_TOKEN",
+    token: process.env.TOKEN || "Bearer Your_TOKEN",
     serverID: process.env.SerVER_ID || 'Your_SERVER_ID',
     game: process.env.GAME || 'squad'
 };

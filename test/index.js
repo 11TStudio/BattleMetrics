@@ -4,8 +4,8 @@
 const BM = require('../index')
 
 const options = {
-    token: process.env.BM_TOKEN || "xxxxxxxx", // my token
-    serverID: process.env.BM_SERVER_ID || 'xxxxxxx', // GER-SQ
+    token: process.env.BM_TOKEN || "Bearer Your_Token", // my token
+    serverID: process.env.BM_SERVER_ID || 'Your_SERVER_ID', // GER-SQ
     game: process.env.BM_GAME || 'squad'
 }
 
