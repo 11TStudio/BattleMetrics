@@ -38,7 +38,7 @@ const options = {
 const battleMetrics = new BM(options);
 
 // Example usage using .then()
-battleMetrics.getServerInfoById(tBM.serverID).then(res => {
+battleMetrics.getServerInfoById(battleMetrics.serverID).then(res => {
     console.log(res)
 }).catch(err => {
     console.log(err)
