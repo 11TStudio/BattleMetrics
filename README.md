@@ -14,7 +14,7 @@ This is a  [Node.js](https://nodejs.org/en/)  module.
 Before installing, [download and install Node.js](https://nodejs.org/en/download/).
 
 ``` js
-const BM = require('battlemetricsapi')
+const BM = require('@leventhan/battlemetrics')
 ```
 ```cli
 npm i @leventhan/battlemetrics
