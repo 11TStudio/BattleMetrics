@@ -35,10 +35,10 @@ const options = {
 };
 
 // Put the options in the consturctor
-const BM = new BM(options);
+const BattleMetrics = new BM(options);
 
 // Example method; 
-BM.getServerInfoById(tBM.serverID).then(res => {
+BattleMetrics.getServerInfoById(tBM.serverID).then(res => {
     const message = "Get server info by serverID";
     console.log("=".repeat(message.length));
     console.log(message);
