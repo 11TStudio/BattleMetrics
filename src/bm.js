@@ -41,7 +41,7 @@ class BM {
     getGameInfo(game) {
         return new Promise((resolve, reject) => {
             this.axios.get(`/games/${game}`).then(res => {
-                const attributes = res.data.data.attributes;
+                const attributes = res.data.data;
                 if(!attributes)
                     reject(Error('Unable to fetch the data.'))
 
@@ -112,20 +112,24 @@ class BM {
     getServerPlayerInfo(playerId, serverId) {
         return new Promise((resolve, reject) => {
             this.axios.get(`/players/${playerId}/servers/${serverId}`).then(res => {
-                console.log(res.data)    
-                const attributes = res.data.data.attributes;
+                const attributes = res.data;
                 if(!attributes)
                     reject(Error('Unable to fetch the data.'))
                 
                 resolve(attributes);
-            }).catch(reject);
+            }).catch(function (res) {
+                if(res.response?.data.errors[0].status === "400")
+                    reject(Error(res.response?.data.errors[0].detail));
+                else
+                    reject(res)
+            });
         });
     }
 
     getPlayerInfo(playerId) {
         return new Promise((resolve, reject) => {
             this.axios.get(`/players/${playerId}`).then(res => {
-                const attributes = res.data.data.attributes;
+                const attributes = res.data;
                 if(!attributes)
                     reject(Error('Unable to fetch the data.'))
                 
@@ -137,11 +141,11 @@ class BM {
     getBanInfo(banid) {
         return new Promise((resolve, reject) => {
             this.axios.get(`/bans/${banid}`).then(res => {
-                let data = res.data.data;
+                let data = res.data;
                 if(!data)
                     reject(Error('Unable to fetch the data.'))
                 
-                resolve(res.data.response);
+                resolve(data);
             }).catch(reject);
         });
     }
@@ -149,11 +153,37 @@ class BM {
     getBans() {
         return new Promise((resolve, reject) => {
             this.axios.get(`/bans`).then(res => {
+                let data = res.data;
+                if(!data)
+                    reject(Error('Unable to fetch the data.'))
+                
+                resolve(data);
+            }).catch(reject);
+        });
+    }
+
+    getLeaderBoard(listSize, startTime, stopTime) {
+        return new Promise((resolve, reject) => {
+            if(!(startTime instanceof Date))
+                    reject(Error('Start time is not a valid Date. Should be an instace of Date'))
+                
+            
+            if(!(stopTime instanceof Date))
+                reject(Error('Stop time is not a valid Date. Should be an instace of Date'))
+
+            if(startTime > stopTime)
+                reject(Error('Start time is after stop time.'))
+
+            startTime = startTime.toISOString();
+            stopTime = stopTime.toISOString();
+            startTime = startTime.replace(/:/g, '%3A');
+            stopTime = stopTime.replace(/:/g, '%3A');
+            this.axios.get(`/servers/${this.serverID}/relationships/leaderboards/time?page[size]=${listSize}&filter[period]=${startTime}:${stopTime}`).then(res => {
                 let data = res.data.data;
                 if(!data)
                     reject(Error('Unable to fetch the data.'))
                 
-                resolve(res.data.response);
+                resolve(data);
             }).catch(reject);
         });
     }

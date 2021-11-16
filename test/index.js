@@ -4,9 +4,9 @@
 const BM = require('../index')
 
 const options = {
-    token: process.env.TOKEN || "xxxxxxxx", // my token
+    token: process.env.BM_TOKEN || "xxxxxxxx", // my token
     serverID: process.env.BM_SERVER_ID || 'xxxxxxx', // GER-SQ
-    game: process.env.BM_GAME || 'xxxxxxx'
+    game: process.env.BM_GAME || 'squad'
 }
 
 const tBM = new BM(options);
@@ -15,38 +15,45 @@ const tBM = new BM(options);
  * Get the server info by serverID
  * Example Response:
  * {
- *   id: '10281405',
- *   name: '✪✪✪ GERMAN SQUAD #1 ✪✪✪ @GER-SQUAD.community',
- *   address: null,
- *   ip: '194.26.183.182',
- *   port: 7787,
- *   players: 99,
- *   maxPlayers: 100,
- *   rank: 19,
- *   location: [ 8.10812, 50.518749 ],
- *   status: 'online',
+ *    id: '5936329',
+ *    name: '[TR/EU] Anatolia Squad Community',
+ *    address: null,
+ *    ip: '185.255.92.71',
+ *    port: 7787,
+ *    players: 0,
+ *    maxPlayers: 100,
+ *    rank: 742,
+ *    location: [ 29.06111, 40.191669 ],
+ *   status: 'dead',
  *   details: {
- *       map: 'Narva_Invasion_v2',
- *       gameMode: 'Invasion',
- *       version: 'V2.11.0.25.64014',
- *       secure: 0,
- *       licensedServer: true,
- *       licenseId: '809942',
- *       numPubConn: 99,
- *       numPrivConn: 1,
- *       numOpenPrivConn: 1,
- *       modded: false,
- *       serverSteamId: '90153141169837065'
+ *     map: 'Albasrah_AAS_v1',
+ *     gameMode: 'AAS',
+ *     version: 'V2.8.0.12.58231',
+ *     secure: 0,
+ *     licensedServer: true,
+ *     licenseId: '978894',
+ *     numPubConn: 100,
+ *    numPrivConn: 0,
+ *    numOpenPrivConn: 0,
+ *      modded: false,
+ *      serverSteamId: '90148897138733058'
  *   },
  *   private: false,
- *   createdAt: '2021-02-19T13:52:06.986Z',
- *   updatedAt: '2021-11-15T19:48:42.026Z',
+ *   createdAt: '2020-03-10T09:38:40.908Z',
+ *   updatedAt: '2021-11-15T22:36:05.172Z',
  *   portQuery: 27165,
- *   country: 'DE',
- *   queryStatus: 'valid'
- *   }
+ *   country: 'TR',
+ *   queryStatus: 'timeout',
+ *   rconActive: false,
+ *   metadata: {
+ *     disabledReason: 'We have been unable to connect for an extended period of time. Please ensure your connection settings are correct and the server is available.', 
+ *     disableLocked: false
+ *   },
+ *   rconStatus: 'refused',
+ *   rconLastConnected: '2021-07-09T09:33:54.101Z',
+ *   rconDisconnected: '2021-07-09T09:36:42.333Z'
+ * }
  */
-
 tBM.getServerInfoById(tBM.serverID).then(res => {
     const message = "Get server info by serverID";
     console.log("=".repeat(message.length));
@@ -215,25 +222,21 @@ tBM.getServerPlayerInfo("489993844", tBM.serverID).then(res => {
  * 
  * Example Response:
  * {
- *   id: '489993844',
- *   name: 'AK | Arkantdos',
- *   private: false,
- *   positiveMatch: false,
- *   createdAt: '2018-02-20T19:26:43.639Z',
- *   updatedAt: '2018-02-20T19:26:43.639Z'
- *   }
- *   {
  *   data: {
- *       type: 'playerServerInformation',
- *       id: '10281405',
+ *       type: 'player',
+ *       id: '489993844',
  *       attributes: {
- *          firstSeen: '2021-03-07T16:02:55.663Z',
- *          lastSeen: '2021-11-15T20:45:43.313Z',
- *          timePlayed: 412886,
- *          online: false
- *       }
- *   }
- *  }
+ *           id: '489993844',
+ *           name: 'AK | Arkantdos',
+ *           private: false,
+ *           positiveMatch: false,
+ *           createdAt: '2018-02-20T19:26:43.639Z',
+ *           updatedAt: '2018-02-20T19:26:43.639Z'
+ *       },
+ *       relationships: {}
+ *   },
+ *   included: []
+ * }
  */
 tBM.getPlayerInfo("489993844").then(res => {
     const message = "Get playerID's info";
@@ -424,4 +427,18 @@ tBM.getBans().then(res => {
     } else {
         console.log(err)
     }
+});
+
+const startDateLeaderBoard = new Date();
+startDateLeaderBoard.setDate(startDateLeaderBoard.getDate() - 90);
+const endDateLeaderBoard = new Date();
+tBM.getLeaderBoard(10, startDateLeaderBoard, endDateLeaderBoard).then(res => {
+    const message = "Get leaderboard";
+    console.log("=".repeat(message.length));
+    console.log(message);
+    console.log("=".repeat(message.length));
+    console.log(res)
+}
+).catch(err => {
+    console.log(err)
 });
