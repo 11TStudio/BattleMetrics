@@ -35,20 +35,22 @@ const options = {
 };
 
 // Put the options in the consturctor
-const BattleMetrics = new BM(options);
+const battleMetrics = new BM(options);
 
-// Example method; 
-BattleMetrics.getServerInfoById(tBM.serverID).then(res => {
-    const message = "Get server info by serverID";
-    console.log("=".repeat(message.length));
-    console.log(message);
-    console.log("=".repeat(message.length));
+// Example usage using .then()
+battleMetrics.getServerInfoById(tBM.serverID).then(res => {
     console.log(res)
 }).catch(err => {
     console.log(err)
 });
+
+// Example usage using await (should be inside async function)
+const awaitExample = await battleMetrics.getServerInfoById(
+		battleMetrics.serverID
+	);
+console.log(awaitExample);
 /**
- * Example method's response than would be:
+ * Example usages response would be:
  * {
  *   id: '10281405',
  *   name: '✪✪✪ GERMAN SQUAD #1 ✪✪✪ @GER-SQUAD.community',
