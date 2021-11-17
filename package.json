@@ -1,7 +1,7 @@
 {
   "name": "@leventhan/battlemetrics",
   "version": "1.4.8",
-  "description": "A modern NodeJS library for the BM API",
+  "description": "An object-oriented BattleMetrics (API) package for NodeJS. With error handling and control checks before sending API requests.",
   "main": "index.js",
   "scripts": {
     "test": "node test/index.js"
