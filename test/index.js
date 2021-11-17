@@ -4,7 +4,7 @@
 const BM = require('../index')
 
 const options = {
-    token: process.env.BM_TOKEN || "Bearer Your_Token", // my token
+    token: process.env.BM_TOKEN || "Your_Token", // my token without Bearer!
     serverID: process.env.BM_SERVER_ID || 'Your_SERVER_ID', // GER-SQ
     game: process.env.BM_GAME || 'squad'
 }
@@ -54,7 +54,7 @@ const tBM = new BM(options);
  *   rconDisconnected: '2021-07-09T09:36:42.333Z'
  * }
  */
-tBM.getServerInfoById(tBM.serverID).then(res => {
+ tBM.getServerInfoById(tBM.serverID).then(res => {
     const message = "Get server info by serverID";
     console.log("=".repeat(message.length));
     console.log(message);

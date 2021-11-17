@@ -7,12 +7,12 @@
 class BM {
     /**
     * Creates an instance of BM.
-    * @param {*} [options={}]
+    * @param {Object} [options={}]
     * @memberof BM
     */
     constructor(options = {}){
         this.axios = require('axios');
-        this.axios.defaults.headers.common['Authorization'] = options.token;
+        this.axios.defaults.headers.common['Authorization'] = "Bearer " + options.token;
         this.axios.defaults.baseURL = 'https://api.battlemetrics.com';
         this.axios.defaults.headers.post['Content-Type'] = 'application/json';
         this.token = options.token;
@@ -639,6 +639,8 @@ class BM {
             }).catch(reject);
         });
     }
+
+    
 }
 
 
