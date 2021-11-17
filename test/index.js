@@ -531,3 +531,90 @@ tBM.getLeaderBoard(10, startDateLeaderBoard, endDateLeaderBoard).then(res => {
 ).catch(err => {
     console.log(err)
 });
+
+/**
+ * Get game specific functions/methods/commands
+ * 
+ * Example Response:
+ * {
+ *   data: [
+ *       {
+ *       type: 'gameFeature',
+ *       id: '2e0791ae-d6f7-11e7-8461-b7cebb9fd653',
+ *       attributes: [Object],
+ *       relationships: [Object]
+ *       },
+ *      {
+ *       type: 'gameFeature',
+ *       id: '2e079276-d6f7-11e7-8461-3f3da6b99087',
+ *       attributes: [Object],
+ *       relationships: [Object]
+ *       },
+ *       {
+ *       type: 'gameFeature',
+ *       id: '2e079348-d6f7-11e7-8461-f3ffd2944b39',
+ *       attributes: [Object],
+ *       relationships: [Object]
+ *       },
+ *       {
+ *       type: 'gameFeature',
+ *       id: '2e079424-d6f7-11e7-8461-c32095bd1ceb',
+ *       attributes: [Object],
+ *       relationships: [Object]
+ *       }
+ *   ],
+ *   links: {}
+ *   }
+ */
+ tBM.getGameFeatures("squad").then(features => {
+    // console.log(features)
+    // loop through features
+    features.data.forEach(feature => {
+        console.log(feature)
+    })
+}).catch(err => {
+    console.log(err)
+})
+
+/**
+ * Get all information for the feature per feature by feature id
+ * 
+ * Example Response:
+ * [
+ *   {
+ *       type: 'gameFeatureOption',
+ *       id: 'ff6bd270-3426-11eb-96eb-bf2d7bfb2613',
+ *       attributes: { display: 'Albasrah_AAS_v1', count: 126, players: 0 },
+ *       relationships: { gameFeature: [Object] }
+ *   },
+ *  {
+ *       type: 'gameFeatureOption',
+ *       id: 'd9309a40-3c0b-11eb-8cb0-2d5f26a63470',
+ *       attributes: { display: 'JensensRange_US-RUS', count: 53, players: 49 },
+ *       relationships: { gameFeature: [Object] }
+ *   },
+ *   {
+ *       type: 'gameFeatureOption',
+ *       id: 'be014f20-0e54-11ea-96ab-d9aad1691b18',
+ *       attributes: { display: 'Anvil_AAS_v1', count: 30, players: 0 },
+ *       relationships: { gameFeature: [Object] }
+ *   },
+ *   {
+ *       type: 'gameFeatureOption',
+ *       id: '84a08f10-359b-11eb-94e9-1321c82e6028',
+ *       attributes: { display: 'JensensRange_GB-MIL', count: 20, players: 3 },
+ *       relationships: { gameFeature: [Object] }
+ *   },
+ *   {
+ *       type: 'gameFeatureOption',
+ *       id: '3786da00-3473-11eb-bf04-bb1636773811',
+ *       attributes: { display: 'Albasrah_AAS_v2', count: 15, players: 0 },
+ *       relationships: { gameFeature: [Object] }
+ *   }
+ * ]
+ */
+tBM.getGameFeatureOptionsList("2e0791ae-d6f7-11e7-8461-b7cebb9fd653").then(options => {
+    console.log(options.data)
+}).catch(err => {
+    console.log(err)
+})

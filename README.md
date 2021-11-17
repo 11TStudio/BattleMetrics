@@ -102,4 +102,6 @@ See [test/index.js](https://github.com/11TStudio/BattleMetrics/blob/master/test/
  * `getBanInfoByID` - Get a ban information by ban id
  * `getBans` - Get all bans of your token.
  * `getLeaderBoard` - Get the leaderboard list between two dates.
+ * `getGameFeatures` - Get game features by game name.
+ * `getGameFeatureOptionsList` - Get all information for the feature per feature by feature id
  * `coming more soon` - ...
