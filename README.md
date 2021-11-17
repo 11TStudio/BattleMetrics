@@ -29,7 +29,7 @@ Then you can use it as below;
 ``` js
 // The options is NEEDED for the authentication!
 const options = {
-    token: process.env.TOKEN || "Bearer Your_TOKEN",
+    token: process.env.TOKEN || "Your_TOKEN", // after v1.4.8 don't add Bearer!
     serverID: process.env.SerVER_ID || 'Your_SERVER_ID',
     game: process.env.GAME || 'squad'
 };
@@ -90,3 +90,16 @@ console.log(awaitExample);
 
 ## Example Usage
 See [test/index.js](https://github.com/11TStudio/BattleMetrics/blob/master/test/index.js) for the usage example of all existing functions.
+
+
+## Current Avaible Methods
+ * `getServerInfoById` - Get server info by server ID.
+ * `getGameInfo` - Get game information by game name.
+ * `getServerInfoByNameAndGame` - Get all servers info by filtering by serverName AND by game name.
+ * `getPlayTimeHistory` - Get a player's play time history for max 90 days. Every day is one dataPoint.
+ * `getServerPlayerInfo` - Get a player's information of specific server.
+ * `getPlayerInfo` - Get a player's information in general.
+ * `getBanInfoByID` - Get a ban information by ban id
+ * `getBans` - Get all bans of your token.
+ * `getLeaderBoard` - Get the leaderboard list between two dates.
+ * `coming more soon` - ...

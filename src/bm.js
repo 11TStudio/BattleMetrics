@@ -21,63 +21,6 @@ class BM {
     }
 
     /**
-    * Get server information by filtering by server name and game name.
-    *
-    * @param {*} serverName Name of the server
-    * @param {*} [game=this.game] Name of the game, default is options.game
-    * @return {*} Promise<Array<Object>>
-    * @memberof BM
-    * @example
-    * [
-    *  {
-    *   id: '4537923',
-    *   name: 'GERMAN SQUAD SERVER',
-    *   address: null,
-    *   ip: '185.234.72.195',
-    *   port: 7787,
-    *   players: 0,
-    *   maxPlayers: 80,
-    *   rank: 695,
-    *   location: [ 8.68417, 50.11552 ],
-    *   status: 'dead',
-    *   details: {
-    *     numOpenPrivConn: 4,
-    *     version: 'a-16.0.12.21682',
-    *     secure: 0,
-    *     gameMode: 'Training',
-    *     licensedServer: false,
-    *     numPubConn: 76,
-    *     map: "Jensen's Range v1",
-    *     numPrivConn: 4,
-    *     serverSteamId: '90129684440801287'
-    *   },
-    *   private: false,
-    *   createdAt: '2019-10-09T21:50:39.515Z',
-    *   updatedAt: '2021-11-15T06:34:41.311Z',
-    *   portQuery: 27165,
-    *   country: 'DE'
-    *  },
-    *  {...}
-    * ]
-    */
-    getServerInfoByName(serverName, game = this.game) {
-        return new Promise((resolve, reject) => {
-            this.axios.get(`/servers?filter[search]='${serverName}&filter[game]=${game}`).then(res => {
-                let outputs = [];
-                const data = res.data.data;
-                if(!data) 
-                    reject(Error('Unable to fetch the data.'))
-
-                data.forEach(el => {
-                    const attributes = el.attributes;
-                    outputs.push(attributes);
-                });
-                resolve(outputs);
-            }).catch(reject);
-        })
-    }
-
-    /**
     * Get server info by server ID.
     *
     * @param {*} serverId
@@ -639,8 +582,6 @@ class BM {
             }).catch(reject);
         });
     }
-
-    
 }
 
 

@@ -12,60 +12,7 @@ const options = {
 const tBM = new BM(options);
 
 /**
- * Get the server info by serverID
- * Example Response:
- * {
- *    id: '5936329',
- *    name: '[TR/EU] Anatolia Squad Community',
- *    address: null,
- *    ip: '185.255.92.71',
- *    port: 7787,
- *    players: 0,
- *    maxPlayers: 100,
- *    rank: 742,
- *    location: [ 29.06111, 40.191669 ],
- *   status: 'dead',
- *   details: {
- *     map: 'Albasrah_AAS_v1',
- *     gameMode: 'AAS',
- *     version: 'V2.8.0.12.58231',
- *     secure: 0,
- *     licensedServer: true,
- *     licenseId: '978894',
- *     numPubConn: 100,
- *    numPrivConn: 0,
- *    numOpenPrivConn: 0,
- *      modded: false,
- *      serverSteamId: '90148897138733058'
- *   },
- *   private: false,
- *   createdAt: '2020-03-10T09:38:40.908Z',
- *   updatedAt: '2021-11-15T22:36:05.172Z',
- *   portQuery: 27165,
- *   country: 'TR',
- *   queryStatus: 'timeout',
- *   rconActive: false,
- *   metadata: {
- *     disabledReason: 'We have been unable to connect for an extended period of time. Please ensure your connection settings are correct and the server is available.', 
- *     disableLocked: false
- *   },
- *   rconStatus: 'refused',
- *   rconLastConnected: '2021-07-09T09:33:54.101Z',
- *   rconDisconnected: '2021-07-09T09:36:42.333Z'
- * }
- */
- tBM.getServerInfoById(tBM.serverID).then(res => {
-    const message = "Get server info by serverID";
-    console.log("=".repeat(message.length));
-    console.log(message);
-    console.log("=".repeat(message.length));
-    console.log(res)
-}).catch(err => {
-    console.log(err)
-});
-
-/**
- * Get all servers info searching by server name
+ * Get all servers info searching by server name and game name
  * Example Response:
  * [
  *  {
