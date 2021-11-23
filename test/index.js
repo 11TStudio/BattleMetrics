@@ -618,3 +618,81 @@ tBM.getGameFeatureOptionsList("2e0791ae-d6f7-11e7-8461-b7cebb9fd653").then(optio
 }).catch(err => {
     console.log(err)
 })
+
+/**
+ * Get all servers info searching by server name and game name
+ * Example Response:
+* [
+*   {
+*       id: '13256753',
+*       name: 'LibertyGaming [GER]',
+*       address: null,
+*       ip: '185.249.197.51',
+*       port: 21900,
+*       players: 0,
+*       maxPlayers: 14,
+*       rank: 1279,
+*       location: [ 8.68417, 50.11552 ],
+*       status: 'online',
+*       details: {
+*       numOpenPrivConn: 0,
+*       version: 'V2.11.0.25.64014',
+*       secure: 0,
+*       gameMode: 'AAS',
+*       licensedServer: false,
+*       numPubConn: 14,
+*       map: 'Albasrah_AAS_v1',
+*       numPrivConn: 0,
+*       serverSteamId: '90152918328628233',
+*       modded: false
+*       },
+*       private: false,
+*       createdAt: '2021-11-08T18:56:38.727Z',
+*       updatedAt: '2021-11-22T22:57:49.234Z',
+*       portQuery: 21901,
+*       country: 'DE'
+*   },
+*   {
+*       id: '9455365',
+*       name: '++ [GER] TrashTalkSonderKommando ++',
+*       address: null,
+*       ip: '45.10.25.117',
+*       port: 7785,
+*       players: 0,
+*       maxPlayers: 100,
+*       rank: 414,
+*       location: [ 12.11835, 47.906792 ],
+*       status: 'online',
+*       details: {
+*       numOpenPrivConn: 2,
+*       version: 'V2.11.0.25.64014',
+*       secure: 0,
+*       licensedServer: true,
+*       numPubConn: 98,
+*       map: 'Fallujah_TC_v2',
+*       modded: true,
+*       gameMode: 'Territory Control',
+*       numPrivConn: 2,
+*       serverSteamId: '90152929261708299',
+*       licenseId: '127186'
+*       },
+*       private: false,
+*       createdAt: '2020-12-23T16:23:19.424Z',
+*       updatedAt: '2021-11-23T05:57:51.037Z',
+*       portQuery: 27023,
+*       country: 'DE'
+*   },
+*   {...}
+* ]
+ * 
+ * 
+ */
+tBM.getAllServersByServerNameCountryAndGame("GER", "DE", tBM.game).then(res => {
+    const message = "Get all servers info filtering by server name, country and game";
+    console.log("=".repeat(message.length));
+    console.log(message);
+    console.log("=".repeat(message.length));
+    console.log(res)
+}).catch(err => {
+    console.log(err)
+});
