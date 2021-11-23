@@ -159,10 +159,39 @@ class BM {
     }
 
     /**
+     * Get server info just filtering by name
+     *
+     * @param {*} name
+     * @param {number} [pageLength=10] - Default is 10. Max is 100.
+     * @return {*} 
+     * @memberof BM
+     */
+    getServerInfoByName(name, pageLength=10) {
+        return new Promise((resolve, reject) => {
+            let info = [];
+            this.axios.get(`/servers?filter[search]='${name}&page[size]=${pageLength}`).then(res => {
+                const servers = res.data.data;
+                if(!servers)
+                    reject(Error('Unable to fetch the data.'))
+
+                servers.forEach(server => {
+                    const attributes = server.attributes;
+                    if(attributes)
+                        info.push(attributes);
+                    
+                });
+                resolve(info);
+            }).catch(reject);
+        })
+    }
+        
+
+    /**
     * Get all servers info by filtering by serverName AND by game name.
     *
     * @param {*} serverName Name of the server
     * @param {*} [game=this.game] Name of the game, default is options.game
+    * @param {number} [pageLength=10] - Default is 10. Max is 100.
     * @return {*} Promise<Array<Object>>
     * @memberof BM
     * @example
@@ -198,10 +227,10 @@ class BM {
     *  {...}
     * ]
     */
-     getServerInfoByNameAndGame(serverName, game=this.game) {
+     getServerInfoByNameAndGame(serverName, game=this.game, pageLength=10) {
         return new Promise((resolve, reject) => {
             let info = [];
-            this.axios.get(`/servers?filter[search]='${serverName}&filter[game]=${game}`).then(res => {
+            this.axios.get(`/servers?filter[search]='${serverName}&filter[game]=${game}&page[size]=${pageLength}`).then(res => {
                 const servers = res.data.data;
                 if(!servers)
                     reject(Error('Unable to fetch the data.'))
@@ -223,6 +252,7 @@ class BM {
      * @param {*} serverName
      * @param {*} country
      * @param {*} [game=this.game]
+     * @param {*} [pageLength=10] Default is 10. Max is 100.
      * @return {*} 
      * @memberof BM
      * @example
@@ -289,10 +319,10 @@ class BM {
      *   {...}
      * ]
      */
-    getAllServersByServerNameCountryAndGame(serverName, country, game=this.game) {
+    getAllServersByServerNameCountryAndGame(serverName, country, game=this.game, pageLength=10) {
         return new Promise((resolve, reject) => {
             let info = [];
-            this.axios.get(`/servers?filter[search]='${serverName}&filter[game]=${game}&filter[countries][]=${country}`).then(res => {
+            this.axios.get(`/servers?filter[search]='${serverName}&filter[game]=${game}&filter[countries][]=${country}&page[size]=${pageLength}`).then(res => {
                 const servers = res.data.data;
                 if(!servers)
                     reject(Error('Unable to fetch the data.'))

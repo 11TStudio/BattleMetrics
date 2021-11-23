@@ -687,7 +687,7 @@ tBM.getGameFeatureOptionsList("2e0791ae-d6f7-11e7-8461-b7cebb9fd653").then(optio
  * 
  * 
  */
-tBM.getAllServersByServerNameCountryAndGame("GER", "DE", tBM.game).then(res => {
+tBM.getAllServersByServerNameCountryAndGame("GER", "DE", tBM.game, 100).then(res => {
     const message = "Get all servers info filtering by server name, country and game";
     console.log("=".repeat(message.length));
     console.log(message);
