@@ -1,5 +1,7 @@
 # BattleMetrics
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b2b008da112c4a36a179c9b0f1199045)](https://app.codacy.com/gh/11TStudio/BattleMetrics?utm_source=github.com&utm_medium=referral&utm_content=11TStudio/BattleMetrics&utm_campaign=Badge_Grade_Settings)
+
 BattleMetics is an advanced rewrite of BattleMeticsAPI (Orginal author: [@Curse345](https://github.com/Curse345)). <br>
 An easy and open source NPM Package that allows you to do a variety of functions within BattleMetrics but much easier!
 
