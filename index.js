@@ -1,1 +1,1 @@
-module.exports = require('./src/bm');
+module.exports = require("./src/bm");

@@ -11,10 +11,10 @@ class BM {
     * @memberof BM
     */
     constructor(options = {}){
-        this.axios = require('axios');
-        this.axios.defaults.headers.common['Authorization'] = "Bearer " + options.token;
-        this.axios.defaults.baseURL = 'https://api.battlemetrics.com';
-        this.axios.defaults.headers.post['Content-Type'] = 'application/json';
+        this.axios = require("axios");
+        this.axios.defaults.headers.common["Authorization"] = "Bearer " + options.token;
+        this.axios.defaults.baseURL = "https://api.battlemetrics.com";
+        this.axios.defaults.headers.post["Content-Type"] = "application/json";
         this.token = options.token;
         this.serverID = options.serverID;
         this.game = options.game;
@@ -28,55 +28,55 @@ class BM {
     * @memberof BM
     * @example
     * {
-    *    id: '5936329',
-    *    name: '[TR/EU] Anatolia Squad Community',
+    *    id: "5936329",
+    *    name: "[TR/EU] Anatolia Squad Community",
     *    address: null,
-    *    ip: '185.255.92.71',
+    *    ip: "185.255.92.71",
     *    port: 7787,
     *    players: 0,
     *    maxPlayers: 100,
     *    rank: 742,
     *    location: [ 29.06111, 40.191669 ],
-    *   status: 'dead',
+    *   status: "dead",
     *   details: {
-    *     map: 'Albasrah_AAS_v1',
-    *     gameMode: 'AAS',
-    *     version: 'V2.8.0.12.58231',
+    *     map: "Albasrah_AAS_v1",
+    *     gameMode: "AAS",
+    *     version: "V2.8.0.12.58231",
     *     secure: 0,
     *     licensedServer: true,
-    *     licenseId: '978894',
+    *     licenseId: "978894",
     *     numPubConn: 100,
     *    numPrivConn: 0,
     *    numOpenPrivConn: 0,
     *      modded: false,
-    *      serverSteamId: '90148897138733058'
+    *      serverSteamId: "90148897138733058"
     *   },
     *   private: false,
-    *   createdAt: '2020-03-10T09:38:40.908Z',
-    *   updatedAt: '2021-11-15T22:36:05.172Z',
+    *   createdAt: "2020-03-10T09:38:40.908Z",
+    *   updatedAt: "2021-11-15T22:36:05.172Z",
     *   portQuery: 27165,
-    *   country: 'TR',
-    *   queryStatus: 'timeout',
+    *   country: "TR",
+    *   queryStatus: "timeout",
     *   rconActive: false,
     *   metadata: {
-    *     disabledReason: 'We have been unable to connect for an extended period of time. Please ensure your connection settings are correct and the server is available.', 
+    *     disabledReason: "We have been unable to connect for an extended period of time. Please ensure your connection settings are correct and the server is available.", 
     *     disableLocked: false
     *   },
-    *   rconStatus: 'refused',
-    *   rconLastConnected: '2021-07-09T09:33:54.101Z',
-    *   rconDisconnected: '2021-07-09T09:36:42.333Z'
+    *   rconStatus: "refused",
+    *   rconLastConnected: "2021-07-09T09:33:54.101Z",
+    *   rconDisconnected: "2021-07-09T09:36:42.333Z"
     * }
     */
     getServerInfoById(serverId) {
         return new Promise((resolve, reject) => {
-            this.axios.get(`/servers/${serverId}`).then(res => {
+            this.axios.get(`/servers/${serverId}`).then((res) => {
                 const attributes = res.data.data.attributes;
-                if(!attributes)
-                    reject(Error('Unable to fetch the data.'))
-
+                if(!attributes) {
+                    reject(Error("Unable to fetch the data."))
+                }
                 resolve(attributes);
             }).catch(reject); 
-        })
+        });
     }
 
     /**
@@ -87,11 +87,11 @@ class BM {
     * @memberof BM
     * @example
     * {
-    *   type: 'game',
-    *   id: 'squad',
+    *   type: "game",
+    *   id: "squad",
     *   attributes: {
-    *       name: 'Squad',
-    *       metadata: { appid: 393380, gamedir: 'squad' },
+    *       name: "Squad",
+    *       metadata: { appid: 393380, gamedir: "squad" },
     *       players: 2768,
     *       servers: 518,
     *       serversByCountry: {
@@ -148,14 +148,14 @@ class BM {
     */
     getGameInfo(game = this.game) {
         return new Promise((resolve, reject) => {
-            this.axios.get(`/games/${game}`).then(res => {
+            this.axios.get(`/games/${game}`).then((res) => {
                 const attributes = res.data.data;
-                if(!attributes)
-                    reject(Error('Unable to fetch the data.'))
-
+                if(!attributes) {
+                    reject(Error("Unable to fetch the data."));
+                }
                 resolve(attributes);
             }).catch(reject); 
-        })
+        });
     }
 
     /**
@@ -169,20 +169,21 @@ class BM {
     getServerInfoByName(name, pageLength=10) {
         return new Promise((resolve, reject) => {
             let info = [];
-            this.axios.get(`/servers?filter[search]='${name}&page[size]=${pageLength}`).then(res => {
+            this.axios.get(`/servers?filter[search]="${name}&page[size]=${pageLength}`).then((res) => {
                 const servers = res.data.data;
-                if(!servers)
-                    reject(Error('Unable to fetch the data.'))
+                if(!servers) {
+                    reject(Error("Unable to fetch the data."))
+                }
 
-                servers.forEach(server => {
+                servers.forEach((server) => {
                     const attributes = server.attributes;
-                    if(attributes)
+                    if(attributes) {
                         info.push(attributes);
-                    
+                    }
                 });
                 resolve(info);
             }).catch(reject);
-        })
+        });
     }
         
 
@@ -197,32 +198,32 @@ class BM {
     * @example
     * [
     *   {
-    *       id: '4537923',
-    *       name: 'GERMAN SQUAD SERVER',
+    *       id: "4537923",
+    *       name: "GERMAN SQUAD SERVER",
     *       address: null,
-    *       ip: '185.234.72.195',
+    *       ip: "185.234.72.195",
     *       port: 7787,
     *       players: 0,
     *       maxPlayers: 80,
     *       rank: 698,
     *       location: [ 8.68417, 50.11552 ],
-    *       status: 'dead',
+    *       status: "dead",
     *       details: {
     *       numOpenPrivConn: 4,
-    *       version: 'a-16.0.12.21682',
+    *       version: "a-16.0.12.21682",
     *       secure: 0,
-    *       gameMode: 'Training',
+    *       gameMode: "Training",
     *       licensedServer: false,
     *       numPubConn: 76,
-    *       map: "Jensen's Range v1",
+    *       map: "Jensen"s Range v1",
     *       numPrivConn: 4,
-    *       serverSteamId: '90129684440801287'
+    *       serverSteamId: "90129684440801287"
     *       },
     *       private: false,
-    *       createdAt: '2019-10-09T21:50:39.515Z',
-    *       updatedAt: '2021-11-16T06:36:26.355Z',
+    *       createdAt: "2019-10-09T21:50:39.515Z",
+    *       updatedAt: "2021-11-16T06:36:26.355Z",
     *       portQuery: 27165,
-    *       country: 'DE'
+    *       country: "DE"
     *   }, 
     *  {...}
     * ]
@@ -230,20 +231,20 @@ class BM {
      getServerInfoByNameAndGame(serverName, game=this.game, pageLength=10) {
         return new Promise((resolve, reject) => {
             let info = [];
-            this.axios.get(`/servers?filter[search]='${serverName}&filter[game]=${game}&page[size]=${pageLength}`).then(res => {
+            this.axios.get(`/servers?filter[search]="${serverName}&filter[game]=${game}&page[size]=${pageLength}`).then((res) => {
                 const servers = res.data.data;
-                if(!servers)
-                    reject(Error('Unable to fetch the data.'))
-
-                servers.forEach(server => {
+                if(!servers) {
+                    reject(Error("Unable to fetch the data."))
+                }
+                servers.forEach((server) => {
                     const attributes = server.attributes;
-                    if(attributes)
+                    if(attributes) {
                         info.push(attributes);
-                    
+                    }
                 });
                 resolve(info);
             }).catch(reject);
-        })
+        });
     }
 
     /**
@@ -258,63 +259,63 @@ class BM {
      * @example
      * [
      *   {
-     *       id: '13256753',
-     *       name: 'LibertyGaming [GER]',
+     *       id: "13256753",
+     *       name: "LibertyGaming [GER]",
      *       address: null,
-     *       ip: '185.249.197.51',
+     *       ip: "185.249.197.51",
      *       port: 21900,
      *       players: 0,
      *       maxPlayers: 14,
      *       rank: 1279,
      *       location: [ 8.68417, 50.11552 ],
-     *       status: 'online',
+     *       status: "online",
      *       details: {
      *       numOpenPrivConn: 0,
-     *       version: 'V2.11.0.25.64014',
+     *       version: "V2.11.0.25.64014",
      *       secure: 0,
-     *       gameMode: 'AAS',
+     *       gameMode: "AAS",
      *       licensedServer: false,
      *       numPubConn: 14,
-     *       map: 'Albasrah_AAS_v1',
+     *       map: "Albasrah_AAS_v1",
      *       numPrivConn: 0,
-     *       serverSteamId: '90152918328628233',
+     *       serverSteamId: "90152918328628233",
      *       modded: false
      *       },
      *       private: false,
-     *       createdAt: '2021-11-08T18:56:38.727Z',
-     *       updatedAt: '2021-11-22T22:57:49.234Z',
+     *       createdAt: "2021-11-08T18:56:38.727Z",
+     *       updatedAt: "2021-11-22T22:57:49.234Z",
      *       portQuery: 21901,
-     *       country: 'DE'
+     *       country: "DE"
      *   },
      *   {
-     *       id: '9455365',
-     *       name: '++ [GER] TrashTalkSonderKommando ++',
+     *       id: "9455365",
+     *       name: "++ [GER] TrashTalkSonderKommando ++",
      *       address: null,
-     *       ip: '45.10.25.117',
+     *       ip: "45.10.25.117",
      *       port: 7785,
      *       players: 0,
      *       maxPlayers: 100,
      *       rank: 414,
      *       location: [ 12.11835, 47.906792 ],
-     *       status: 'online',
+     *       status: "online",
      *       details: {
      *       numOpenPrivConn: 2,
-     *       version: 'V2.11.0.25.64014',
+     *       version: "V2.11.0.25.64014",
      *       secure: 0,
      *       licensedServer: true,
      *       numPubConn: 98,
-     *       map: 'Fallujah_TC_v2',
+     *       map: "Fallujah_TC_v2",
      *       modded: true,
-     *       gameMode: 'Territory Control',
+     *       gameMode: "Territory Control",
      *       numPrivConn: 2,
-     *       serverSteamId: '90152929261708299',
-     *       licenseId: '127186'
+     *       serverSteamId: "90152929261708299",
+     *       licenseId: "127186"
      *       },
      *       private: false,
-     *       createdAt: '2020-12-23T16:23:19.424Z',
-     *       updatedAt: '2021-11-23T05:57:51.037Z',
+     *       createdAt: "2020-12-23T16:23:19.424Z",
+     *       updatedAt: "2021-11-23T05:57:51.037Z",
      *       portQuery: 27023,
-     *       country: 'DE'
+     *       country: "DE"
      *   },
      *   {...}
      * ]
@@ -322,24 +323,24 @@ class BM {
     getAllServersByServerNameCountryAndGame(serverName, country, game=this.game, pageLength=10) {
         return new Promise((resolve, reject) => {
             let info = [];
-            this.axios.get(`/servers?filter[search]='${serverName}&filter[game]=${game}&filter[countries][]=${country}&page[size]=${pageLength}`).then(res => {
+            this.axios.get(`/servers?filter[search]="${serverName}&filter[game]=${game}&filter[countries][]=${country}&page[size]=${pageLength}`).then(res => {
                 const servers = res.data.data;
-                if(!servers)
-                    reject(Error('Unable to fetch the data.'))
-
-                servers.forEach(server => {
+                if(!servers) {
+                    reject(Error("Unable to fetch the data."))
+                }
+                servers.forEach((server) => {
                     const attributes = server.attributes;
-                    if(attributes)
+                    if(attributes) {
                         info.push(attributes);
-                    
+                    }
                 });
                 resolve(info);
             }).catch(reject);
-        })
+        });
     }
 
     /**
-    * Get a player's play time history for max 90 days. Every day is one dataPoint.
+    * Get a player"s play time history for max 90 days. Every day is one dataPoint.
     *
     * @param {string} playerId Players BattleMetrics ID
     * @param {string} [serverId=this.serverID] Servers BattleMetrics ID, default is options.serverID
@@ -350,61 +351,58 @@ class BM {
     * @example
     * [
     *  {
-    *    type: 'dataPoint',
+    *    type: "dataPoint",
     *    attributes: { 
-    *           timestamp: '2021-08-17T00:00:00.000Z', value: 0 
+    *           timestamp: "2021-08-17T00:00:00.000Z", value: 0 
     *       }
     *  },
     *  {...},
     *  {
-    *    type: 'dataPoint',
+    *    type: "dataPoint",
     *    attributes: { 
-    *           timestamp: '2021-08-17T00:00:00.000Z', value: 0 
+    *           timestamp: "2021-08-17T00:00:00.000Z", value: 0 
     *       }
     *  }
     * ]
     */
     getPlayTimeHistory(playerId, serverId=this.serverID, startTime, stopTime) {
         return new Promise((resolve, reject) => {
-            if(!(startTime instanceof Date))
-                reject(Error('Start time is not a valid Date. Should be an instace of Date'))
-            
-           
-            if(!(stopTime instanceof Date))
-                reject(Error('Stop time is not a valid Date. Should be an instace of Date'))
-
-            if(startTime > stopTime)
-                reject(Error('Start time is after stop time.'))
-
-
+            if(!(startTime instanceof Date)){
+                reject(Error("Start time is not a valid Date. Should be an instace of Date"))
+            }
+            if(!(stopTime instanceof Date)) {
+                reject(Error("Stop time is not a valid Date. Should be an instace of Date"))
+            }
+            if(startTime > stopTime) {
+                reject(Error("Start time is after stop time."))
+            }
             const currentDate = new Date();
-            if(startTime < currentDate.setDate(currentDate.getDate() - 91))
-                reject(Error('Start time is not within 90 days of the current date.'))
-
+            if(startTime < currentDate.setDate(currentDate.getDate() - 91)) {
+                reject(Error("Start time is not within 90 days of the current date."))
+            }
             // startTime must be within 90 days of stopTime
-            if(stopTime < startTime.setDate(startTime.getDate() - 91))
-                reject(Error('Stop time is not within 90 days of the start time.'))
-
+            if(stopTime < startTime.setDate(startTime.getDate() - 91)) {
+                reject(Error("Stop time is not within 90 days of the start time."))
+            }
             startTime.setDate(startTime.getDate() + 91);
-            // change starTime from Date to this format: '2015-01-01T12:00:00Z'
+            // change starTime from Date to this format: "2015-01-01T12:00:00Z"
             startTime = startTime.toISOString();
-
             stopTime = stopTime.toISOString();
             // replace all ":" with "%3A"
-            startTime = startTime.replace(/:/g, '%3A');
-            stopTime = stopTime.replace(/:/g, '%3A');
-            this.axios.get(`/players/${playerId}/time-played-history/${serverId}?start=${startTime}&stop=${stopTime}`).then(res => {
+            startTime = startTime.replace(/:/g, "%3A");
+            stopTime = stopTime.replace(/:/g, "%3A");
+            this.axios.get(`/players/${playerId}/time-played-history/${serverId}?start=${startTime}&stop=${stopTime}`).then((res) => {
                 const data = res.data.data;
-                if(!data)
-                    reject(Error('Unable to fetch the data.'))
-
+                if(!data) {
+                    reject(Error("Unable to fetch the data."))
+                }
                 resolve(data);
             }).catch(reject);
         });
     }
 
     /**
-    * Get a player's information of specific server.
+    * Get a player"s information of specific server.
     *
     * @param {string} playerId Players BattleMetrics ID
     * @param {string} [serverId=this.serverID] Servers BattleMetrics ID
@@ -412,31 +410,32 @@ class BM {
     * @memberof BM
     * @example
     * {
-    *   firstSeen: '2021-03-07T16:02:55.663Z',
-    *   lastSeen: '2021-11-15T14:57:27.224Z',
+    *   firstSeen: "2021-03-07T16:02:55.663Z",
+    *   lastSeen: "2021-11-15T14:57:27.224Z",
     *   timePlayed: 391990,
     *   online: true // which means he is playing right now
     * }
     */
     getServerPlayerInfo(playerId, serverId=this.serverID) {
         return new Promise((resolve, reject) => {
-            this.axios.get(`/players/${playerId}/servers/${serverId}`).then(res => {
+            this.axios.get(`/players/${playerId}/servers/${serverId}`).then((res) => {
                 const attributes = res.data;
-                if(!attributes)
-                    reject(Error('Unable to fetch the data.'))
-                
+                if(!attributes){
+                    reject(Error("Unable to fetch the data."))
+                }
                 resolve(attributes);
             }).catch(function (res) {
-                if(res.response?.data.errors[0].status === "400")
+                if(res.response?.data.errors[0].status === "400") {
                     reject(Error(res.response?.data.errors[0].detail));
-                else
+                } else {
                     reject(res)
+                }
             });
         });
     }
 
     /**
-     * Get a player's information in general.
+     * Get a player"s information in general.
      *
      * @param {string} playerId Players BattleMetrics ID
      * @return {Promise<Object>} Promise<Object>
@@ -444,15 +443,15 @@ class BM {
      * @example
      * {
      *   data: {
-     *       type: 'player',
-     *       id: '489993844',
+     *       type: "player",
+     *       id: "489993844",
      *       attributes: {
-     *           id: '489993844',
-     *           name: 'AK | Arkantdos',
+     *           id: "489993844",
+     *           name: "AK | Arkantdos",
      *           private: false,
      *           positiveMatch: false,
-     *           createdAt: '2018-02-20T19:26:43.639Z',
-     *           updatedAt: '2018-02-20T19:26:43.639Z'
+     *           createdAt: "2018-02-20T19:26:43.639Z",
+     *           updatedAt: "2018-02-20T19:26:43.639Z"
      *       },
      *       relationships: {}
      *   },
@@ -461,11 +460,11 @@ class BM {
      */
     getPlayerInfo(playerId) {
         return new Promise((resolve, reject) => {
-            this.axios.get(`/players/${playerId}`).then(res => {
+            this.axios.get(`/players/${playerId}`).then((res) => {
                 const attributes = res.data;
-                if(!attributes)
-                    reject(Error('Unable to fetch the data.'))
-                
+                if(!attributes) {
+                    reject(Error("Unable to fetch the data."))
+                }
                 resolve(attributes);
             }).catch(reject);
         });
@@ -551,11 +550,11 @@ class BM {
     */
     getBanInfoByID(banid) {
         return new Promise((resolve, reject) => {
-            this.axios.get(`/bans/${banid}`).then(res => {
+            this.axios.get(`/bans/${banid}`).then((res) => {
                 let data = res.data;
-                if(!data)
-                    reject(Error('Unable to fetch the data.'))
-                
+                if(!data) {
+                    reject(Error("Unable to fetch the data."))
+                }
                 resolve(data);
             }).catch(reject);
         });
@@ -641,11 +640,11 @@ class BM {
     */
     getBans() {
         return new Promise((resolve, reject) => {
-            this.axios.get(`/bans`).then(res => {
+            this.axios.get(`/bans`).then((res) => {
                 let data = res.data;
-                if(!data)
-                    reject(Error('Unable to fetch the data.'))
-                
+                if(!data) {
+                    reject(Error("Unable to fetch the data."))
+                }
                 resolve(data);
             }).catch(reject);
         });
@@ -680,25 +679,24 @@ class BM {
     */
     getLeaderBoard(listSize, startTime, stopTime) {
         return new Promise((resolve, reject) => {
-            if(!(startTime instanceof Date))
-                    reject(Error('Start time is not a valid Date. Should be an instace of Date'))
-                
-            
-            if(!(stopTime instanceof Date))
-                reject(Error('Stop time is not a valid Date. Should be an instace of Date'))
-
-            if(startTime > stopTime)
-                reject(Error('Start time is after stop time.'))
-
+            if(!(startTime instanceof Date)) {
+                    reject(Error("Start time is not a valid Date. Should be an instace of Date"))
+            } 
+            if(!(stopTime instanceof Date)) {
+                reject(Error("Stop time is not a valid Date. Should be an instace of Date"))
+            }
+            if(startTime > stopTime) {
+                reject(Error("Start time is after stop time."))
+            }
             startTime = startTime.toISOString();
             stopTime = stopTime.toISOString();
-            startTime = startTime.replace(/:/g, '%3A');
-            stopTime = stopTime.replace(/:/g, '%3A');
-            this.axios.get(`/servers/${this.serverID}/relationships/leaderboards/time?page[size]=${listSize}&filter[period]=${startTime}:${stopTime}`).then(res => {
+            startTime = startTime.replace(/:/g, "%3A");
+            stopTime = stopTime.replace(/:/g, "%3A");
+            this.axios.get(`/servers/${this.serverID}/relationships/leaderboards/time?page[size]=${listSize}&filter[period]=${startTime}:${stopTime}`).then((res) => {
                 let data = res.data.data;
-                if(!data)
-                    reject(Error('Unable to fetch the data.'))
-                
+                if(!data) {
+                    reject(Error("Unable to fetch the data."))
+                }
                 resolve(data);
             }).catch(reject);
         });
@@ -714,26 +712,26 @@ class BM {
     * {
     *   data: [
     *       {
-    *       type: 'gameFeature',
-    *       id: '2e0791ae-d6f7-11e7-8461-b7cebb9fd653',
+    *       type: "gameFeature",
+    *       id: "2e0791ae-d6f7-11e7-8461-b7cebb9fd653",
     *       attributes: [Object],
     *       relationships: [Object]
     *       },
     *      {
-    *       type: 'gameFeature',
-    *       id: '2e079276-d6f7-11e7-8461-3f3da6b99087',
+    *       type: "gameFeature",
+    *       id: "2e079276-d6f7-11e7-8461-3f3da6b99087",
     *       attributes: [Object],
     *       relationships: [Object]
     *       },
     *       {
-    *       type: 'gameFeature',
-    *       id: '2e079348-d6f7-11e7-8461-f3ffd2944b39',
+    *       type: "gameFeature",
+    *       id: "2e079348-d6f7-11e7-8461-f3ffd2944b39",
     *       attributes: [Object],
     *       relationships: [Object]
     *       },
     *       {
-    *       type: 'gameFeature',
-    *       id: '2e079424-d6f7-11e7-8461-c32095bd1ceb',
+    *       type: "gameFeature",
+    *       id: "2e079424-d6f7-11e7-8461-c32095bd1ceb",
     *       attributes: [Object],
     *       relationships: [Object]
     *       }
@@ -743,11 +741,11 @@ class BM {
     */
     getGameFeatures(game=this.game) {
         return new Promise((resolve, reject) => {
-            this.axios.get(`/game-features?filter[game]=${game}`).then(res => {
+            this.axios.get(`/game-features?filter[game]=${game}`).then((res) => {
                 let data = res.data;
-                if(!data)
-                    reject(Error('Unable to fetch the data.'))
-                
+                if(!data) {
+                    reject(Error("Unable to fetch the data."))
+                }
                 resolve(data);
             }).catch(reject);
         });
@@ -762,44 +760,44 @@ class BM {
     * @example
     * [
     *   {
-    *       type: 'gameFeatureOption',
-    *       id: 'ff6bd270-3426-11eb-96eb-bf2d7bfb2613',
-    *       attributes: { display: 'Albasrah_AAS_v1', count: 126, players: 0 },
+    *       type: "gameFeatureOption",
+    *       id: "ff6bd270-3426-11eb-96eb-bf2d7bfb2613",
+    *       attributes: { display: "Albasrah_AAS_v1", count: 126, players: 0 },
     *       relationships: { gameFeature: [Object] }
     *   },
     *  {
-    *       type: 'gameFeatureOption',
-    *       id: 'd9309a40-3c0b-11eb-8cb0-2d5f26a63470',
-    *       attributes: { display: 'JensensRange_US-RUS', count: 53, players: 49 },
+    *       type: "gameFeatureOption",
+    *       id: "d9309a40-3c0b-11eb-8cb0-2d5f26a63470",
+    *       attributes: { display: "JensensRange_US-RUS", count: 53, players: 49 },
     *       relationships: { gameFeature: [Object] }
     *   },
     *   {
-    *       type: 'gameFeatureOption',
-    *       id: 'be014f20-0e54-11ea-96ab-d9aad1691b18',
-    *       attributes: { display: 'Anvil_AAS_v1', count: 30, players: 0 },
+    *       type: "gameFeatureOption",
+    *       id: "be014f20-0e54-11ea-96ab-d9aad1691b18",
+    *       attributes: { display: "Anvil_AAS_v1", count: 30, players: 0 },
     *       relationships: { gameFeature: [Object] }
     *   },
     *   {
-    *       type: 'gameFeatureOption',
-    *       id: '84a08f10-359b-11eb-94e9-1321c82e6028',
-    *       attributes: { display: 'JensensRange_GB-MIL', count: 20, players: 3 },
+    *       type: "gameFeatureOption",
+    *       id: "84a08f10-359b-11eb-94e9-1321c82e6028",
+    *       attributes: { display: "JensensRange_GB-MIL", count: 20, players: 3 },
     *       relationships: { gameFeature: [Object] }
     *   },
     *   {
-    *       type: 'gameFeatureOption',
-    *       id: '3786da00-3473-11eb-bf04-bb1636773811',
-    *       attributes: { display: 'Albasrah_AAS_v2', count: 15, players: 0 },
+    *       type: "gameFeatureOption",
+    *       id: "3786da00-3473-11eb-bf04-bb1636773811",
+    *       attributes: { display: "Albasrah_AAS_v2", count: 15, players: 0 },
     *       relationships: { gameFeature: [Object] }
     *   }
     * ]
     */
     getGameFeatureOptionsList(gameFeatureID) {
         return new Promise((resolve, reject) => {
-            this.axios.get(`/game-features/${gameFeatureID}/relationships/options`).then(res => {
+            this.axios.get(`/game-features/${gameFeatureID}/relationships/options`).then((res) => {
                 let data = res.data;
-                if(!data)
-                    reject(Error('Unable to fetch the data.'))
-                
+                if(!data) {
+                    reject(Error("Unable to fetch the data."))
+                }
                 resolve(data);
             }).catch(reject);
         });
