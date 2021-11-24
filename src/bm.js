@@ -151,7 +151,7 @@ class BM {
             this.axios.get(`/games/${game}`).then((res) => {
                 const attributes = res.data.data;
                 if(!attributes) {
-                    reject(Error("Unable to fetch the data."));;
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(attributes);
             }).catch(reject); 
