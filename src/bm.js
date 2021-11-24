@@ -72,7 +72,7 @@ class BM {
             this.axios.get(`/servers/${serverId}`).then((res) => {
                 const attributes = res.data.data.attributes;
                 if(!attributes) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(attributes);
             }).catch(reject); 
@@ -151,7 +151,7 @@ class BM {
             this.axios.get(`/games/${game}`).then((res) => {
                 const attributes = res.data.data;
                 if(!attributes) {
-                    reject(Error("Unable to fetch the data."));
+                    reject(Error("Unable to fetch the data."));;
                 }
                 resolve(attributes);
             }).catch(reject); 
@@ -172,7 +172,7 @@ class BM {
             this.axios.get(`/servers?filter[search]="${name}&page[size]=${pageLength}`).then((res) => {
                 const servers = res.data.data;
                 if(!servers) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
 
                 servers.forEach((server) => {
@@ -234,7 +234,7 @@ class BM {
             this.axios.get(`/servers?filter[search]="${serverName}&filter[game]=${game}&page[size]=${pageLength}`).then((res) => {
                 const servers = res.data.data;
                 if(!servers) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 servers.forEach((server) => {
                     const attributes = server.attributes;
@@ -326,7 +326,7 @@ class BM {
             this.axios.get(`/servers?filter[search]="${serverName}&filter[game]=${game}&filter[countries][]=${country}&page[size]=${pageLength}`).then(res => {
                 const servers = res.data.data;
                 if(!servers) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 servers.forEach((server) => {
                     const attributes = server.attributes;
@@ -394,7 +394,7 @@ class BM {
             this.axios.get(`/players/${playerId}/time-played-history/${serverId}?start=${startTime}&stop=${stopTime}`).then((res) => {
                 const data = res.data.data;
                 if(!data) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(data);
             }).catch(reject);
@@ -421,7 +421,7 @@ class BM {
             this.axios.get(`/players/${playerId}/servers/${serverId}`).then((res) => {
                 const attributes = res.data;
                 if(!attributes){
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(attributes);
             }).catch(function (res) {
@@ -463,7 +463,7 @@ class BM {
             this.axios.get(`/players/${playerId}`).then((res) => {
                 const attributes = res.data;
                 if(!attributes) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(attributes);
             }).catch(reject);
@@ -553,7 +553,7 @@ class BM {
             this.axios.get(`/bans/${banid}`).then((res) => {
                 let data = res.data;
                 if(!data) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(data);
             }).catch(reject);
@@ -643,7 +643,7 @@ class BM {
             this.axios.get(`/bans`).then((res) => {
                 let data = res.data;
                 if(!data) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(data);
             }).catch(reject);
@@ -695,7 +695,7 @@ class BM {
             this.axios.get(`/servers/${this.serverID}/relationships/leaderboards/time?page[size]=${listSize}&filter[period]=${startTime}:${stopTime}`).then((res) => {
                 let data = res.data.data;
                 if(!data) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(data);
             }).catch(reject);
@@ -744,7 +744,7 @@ class BM {
             this.axios.get(`/game-features?filter[game]=${game}`).then((res) => {
                 let data = res.data;
                 if(!data) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(data);
             }).catch(reject);
@@ -796,7 +796,7 @@ class BM {
             this.axios.get(`/game-features/${gameFeatureID}/relationships/options`).then((res) => {
                 let data = res.data;
                 if(!data) {
-                    reject(Error("Unable to fetch the data."))
+                    reject(Error("Unable to fetch the data."));
                 }
                 resolve(data);
             }).catch(reject);
