@@ -713,4 +713,46 @@ tBM.getAllServersByServerNameCountryAndGame("GER", "DE", tBM.game, 100).then((re
  *   links: {}
  *  }
  */
- tBM.getPlayerInfoBy("steamID", "76561198110941835").then(console.log).catch(console.error);
+ tBM.getPlayerInfoBy("steamID", "76561198110941835").then((res) => {
+    const message = "Get players info by searching on identifier.";
+    console.log("=".repeat(message.length));
+    console.log(message);
+    console.log("=".repeat(message.length));
+    console.log(res);
+}).catch(err => {
+    console.log(err);
+});
+
+
+/**
+ * Get info of multiple identifiers/players at once
+ * 
+ * Example Response:
+ * {
+ *   data: [
+ *     {
+ *       type: 'identifier',
+ *       id: '71992279',
+ *       attributes: [Object],// here you can find the identifier you gave to link it back to players ID
+ *       relationships: [Object]
+ *     },
+ *     {
+ *       type: 'identifier',
+ *       id: '8843081',
+ *       attributes: [Object], // here you can find the identifier you gave to link it back to players ID
+ *       relationships: [Object]
+ *     }
+ *   ],
+ *   included: [],
+ *   links: {}
+ * }
+ */
+tBM.getPlayersInfoBy("steamID", ["76561198110941835", "76561198095294178"]).then((res) => {
+    const message = "Get multiple players info by searching on identifier.";
+    console.log("=".repeat(message.length));
+    console.log(message);
+    console.log("=".repeat(message.length));
+    console.log(res);
+}).catch(err => {
+    console.log(err);
+});

@@ -804,7 +804,7 @@ class BM {
     }
 
     /**
-     * Searches for one or more identifiers.
+     * Get player information by identifiertype (ex; steamID) and identifier (ex: 76561198012345678)
      *
      * @param {string} typeIdentifier - Identifier type
 one of:"steamID" or "BEGUID" or "legacyBEGUID" or "ip" or "name" or "survivorName" or "steamFamilyShareOwner" or "conanCharName" or "egsID" or "funcomID" or "playFabID" or "mcUUID"
@@ -921,8 +921,40 @@ one of:"steamID" or "BEGUID" or "legacyBEGUID" or "ip" or "name" or "survivorNam
             }).catch(reject);
         });
     }
-}
 
+    /**
+     * Get player information by providing a identfier type and multiple identifiers.
+     *
+     * @param {string} typeIdentifier - Identifier type
+one of:"steamID" or "BEGUID" or "legacyBEGUID" or "ip" or "name" or "survivorName" or "steamFamilyShareOwner" or "conanCharName" or "egsID" or "funcomID" or "playFabID" or "mcUUID"
+     * @param {Array} identifiers - Array of identifiers
+     * @return {Promise<Object>} Promise<Object>
+     * @memberof BM
+     */
+    getPlayersInfoBy(typeIdentifier, identifiers){
+        return new Promise((resolve, reject) => {
+            const identifiersData = identifiers.map((identifier) => {
+                return {
+                    "type": "identifier",
+                    "attributes": {
+                        "type": `${typeIdentifier}`,
+                        "identifier": `${identifier}`
+                    }
+                };
+            });
+            
+            this.axios.post(`/players/match`, {
+                    "data": identifiersData
+            }).then((res) => {
+                let data = res.data;
+                if(!data) {
+                    reject(Error("Unable to fetch the data."));
+                }
+                resolve(data);
+            }).catch(reject);
+        });
+    }
+}
 
 
 /**
