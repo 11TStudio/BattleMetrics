@@ -106,4 +106,5 @@ See [test/index.js](https://github.com/11TStudio/BattleMetrics/blob/master/test/
  * `getLeaderBoard` - Get the leaderboard list between two dates.
  * `getGameFeatures` - Get game features by game name.
  * `getGameFeatureOptionsList` - Get all information for the feature per feature by feature id
+ * `getPlayerInfoBy` - Get players information by identifier (for example steamID, playerName, playerID, IP, GUID, etc...)
  * `coming more soon` - ...
