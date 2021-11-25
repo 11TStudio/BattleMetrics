@@ -696,3 +696,21 @@ tBM.getAllServersByServerNameCountryAndGame("GER", "DE", tBM.game, 100).then((re
 }).catch(err => {
     console.log(err);
 });
+
+/**
+ * Get players identifiers (Identifier type one of:"steamID" or "BEGUID" or "legacyBEGUID" or "ip" or "name" or "survivorName" or "steamFamilyShareOwner" or "conanCharName" or "egsID" or "funcomID" or "playFabID" or "mcUUID")
+ * Example Response:
+ * {        
+ *   data: [
+ *       {
+ *       type: 'identifier',
+ *       id: '8843081',
+ *       attributes: [Object],
+ *       relationships: [Object]
+ *       }
+ *   ],
+ *   included: [],
+ *   links: {}
+ *  }
+ */
+ tBM.getPlayerInfoBy("steamID", "76561198110941835").then(console.log).catch(console.error);

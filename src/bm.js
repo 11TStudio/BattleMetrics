@@ -802,6 +802,125 @@ class BM {
             }).catch(reject);
         });
     }
+
+    /**
+     * Searches for one or more identifiers.
+     *
+     * @param {string} typeIdentifier - Identifier type
+one of:"steamID" or "BEGUID" or "legacyBEGUID" or "ip" or "name" or "survivorName" or "steamFamilyShareOwner" or "conanCharName" or "egsID" or "funcomID" or "playFabID" or "mcUUID"
+     * @param {string} identifier
+     * @return {Promise<Object>} Promise<Object>
+     * @memberof BM
+     * @limitation Only one request allowed per second.
+     * @example
+     * {
+     *   "data": [
+     *       {
+     *           "type": "identifier",
+     *           "id": "8843081",
+     *           "attributes": {
+     *               "type": "steamID",
+     *               "identifier": "76561198110941835",
+     *               "lastSeen": "2021-10-26T21:08:21.213+00:00",
+     *               "private": true,
+     *               "metadata": {
+     *                   "profile": {
+     *                       "personaname": "LeventHAN",
+     *                       "gameextrainfo": "Squad",
+     *                       "communityvisibilitystate": 3,
+     *                       "timecreated": 1381765646,
+     *                       "steamid": "76561198110941835",
+     *                       "commentpermission": 1,
+     *                       "personastate": 1,
+     *                       "realname": "LeventHAN.",
+     *                       "locstatecode": "34",
+     *                       "primaryclanid": "103582791436471997",
+     *                       "gameserverip": "213.238.177.216:7787",
+     *                       "profilestate": 1,
+     *                       "avatarmedium": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/c5/c5da13940a3d4a9e6b84a5d7dc8527e57dcfe942_medium.jpg",
+     *                       "avatar": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/c5/c5da13940a3d4a9e6b84a5d7dc8527e57dcfe942.jpg",
+     *                       "avatarfull": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/c5/c5da13940a3d4a9e6b84a5d7dc8527e57dcfe942_full.jpg",
+     *                       "loccityid": 44967,
+     *                       "avatarhash": "c5da13940a3d4a9e6b84a5d7dc8527e57dcfe942",
+     *                       "loccountrycode": "TR",
+     *                       "gameid": "393380",
+     *                       "gameserversteamid": "90152496321983490",
+     *                       "profileurl": "https://steamcommunity.com/id/ESLevent/",
+     *                       "personastateflags": 0
+     *                   },
+     *                   "bans": {
+     *                       "NumberOfVACBans": 1,
+     *                       "SteamId": "76561198110941835",
+     *                       "CommunityBanned": false,
+     *                       "NumberOfGameBans": 0,
+     *                       "EconomyBan": "none",
+     *                       "DaysSinceLastBan": 440,
+     *                       "VACBanned": true
+     *                   },
+     *                   "gameInfo": {
+     *                       "lastCheck": "2021-10-26T21:08:27.729Z",
+     *                       "games": [
+     *                           {
+     *                               "playtime_windows_forever": 0,
+     *                               "playtime_mac_forever": 0,
+     *                               "playtime_linux_forever": 0,
+     *                               "appid": 4000,
+     *                               "playtime_forever": 0
+     *                           },
+     *                           {...}
+     *                       ],
+     *                       "game_count": 241,
+     *                       "steamid": "76561198110941835"
+     *                   }
+     *               }
+     *           },
+     *           "relationships": {
+     *               "player": {
+     *                   "data": {
+     *                       "type": "player",
+     *                       "id": "36884216"
+     *                   }
+     *               },
+     *               "organizations": {
+     *                   "data": [
+     *                       {
+     *                           "type": "organization",
+     *                           "id": "16247"
+     *                       },
+     *                       {
+     *                           "type": "organization",
+     *                           "id": "22687"
+     *                       }
+     *                   ]
+     *               }
+     *           }
+     *       }
+     *   ],
+     *   "included": [],
+     *   "links": {}
+     * }
+     */
+    getPlayerInfoBy(typeIdentifier, identifier){
+        return new Promise((resolve, reject) => {
+            this.axios.post(`/players/match`, {
+                    "data": [
+                      {
+                        "type": "identifier",
+                        "attributes": {
+                          "type": `${typeIdentifier}`,
+                          "identifier": `${identifier}`
+                        }
+                      }
+                    ]
+            }).then((res) => {
+                let data = res.data;
+                if(!data) {
+                    reject(Error("Unable to fetch the data."));
+                }
+                resolve(data);
+            }).catch(reject);
+        });
+    }
 }
 
 
