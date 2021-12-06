@@ -69,8 +69,8 @@ class BM {
     */
     getServerInfoById(serverId) {
         return new Promise((resolve, reject) => {
-            this.axios.get(`/servers/${serverId}`).then((res) => {
-                const attributes = res.data.data.attributes;
+            this.axios.get(`/servers/${serverId}?include=player`).then((res) => {
+                const attributes = res.data.data;
                 if(!attributes) {
                     reject(Error("Unable to fetch the data."));
                 }
